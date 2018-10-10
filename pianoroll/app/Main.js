@@ -15,9 +15,9 @@
  */
 
 require(["domready", "roll/Roll", "sound/Player", "interface/Interface", "Tone/core/Transport",
-        "midi/preludeInC.json", "StartAudioContext", "style/main.scss", "Tone/core/Tone", "interface/Orientation", "interface/Overlay"],
-    function (domReady, Roll, Player, Interface, Transport, preludeInC,
-              StartAudioContext, mainStyle, Tone, Orientation, Overlay) {
+        "midi/Ali01.json", "style/main.scss", "Tone/core/Tone", "interface/Orientation", "interface/Overlay"],
+    function (domReady, Roll, Player, Interface, Transport, FirstPiece,
+              mainStyle, Tone, Orientation, Overlay) {
 
         domReady(function () {
 
@@ -31,7 +31,7 @@ require(["domready", "roll/Roll", "sound/Player", "interface/Interface", "Tone/c
             var overlay = new Overlay(document.body, roll, interface);
 
             //set the first score
-            roll.setScore(preludeInC);
+            roll.setScore(FirstPiece);
 
             /**
              * EVENTS
@@ -88,18 +88,8 @@ require(["domready", "roll/Roll", "sound/Player", "interface/Interface", "Tone/c
             var isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 
             //full screen button on iOS
-            if (isIOS) {
-                //make a full screen element and put it in front
-                var iOSTapper = document.createElement("div");
-                iOSTapper.id = "iOSTap";
-                document.body.appendChild(iOSTapper);
-                new StartAudioContext(Tone.context, iOSTapper).then(function() {
-                    iOSTapper.remove();
-                    window.parent.postMessage('ready', '*');
-                });
-            } else {
-                window.parent.postMessage("ready", "*");
-            }
+            window.parent.postMessage("ready", "*");
+            
 
         });
     });
