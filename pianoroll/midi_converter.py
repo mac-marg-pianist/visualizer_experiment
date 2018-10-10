@@ -1,8 +1,8 @@
 import json
 
 
-MATCH_FILE = '/var/www/html/visualizer/examples/Ali01_match.txt'
-OUT_FILE = 'Ali01.json'
+MATCH_FILE = 'chrome-music-lab/pianoroll/custom_data/Ali01_match.txt'
+OUT_FILE = 'chrome-music-lab/pianoroll/custom_data'
 
 def time_to_tick(time, tempo=216):
   return round(time*tempo)
